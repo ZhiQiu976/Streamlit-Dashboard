@@ -22,7 +22,7 @@ st.write("This dashboard uses data from *Doctorate Recipients from U.S. Universi
 if session == "Recipients Info": 
     st.header('Doctorate recipients from U.S. colleges and universities: 1958–2017')
     
-    df = pd.read_excel('recipients_and_institutions/sed17-sr-tab001.xlsx', skiprows=3)
+    df = pd.read_excel('sed17-sr-tab001.xlsx', skiprows=3)
     # some data pre-processing
     df.iloc[18,2] = 0
     
@@ -144,8 +144,8 @@ if session == "Recipients Info":
 if session == "Institutions Info - Ranking": 
     st.header('State/University, ranked by number of doctorate recipients: 2017')
     
-    df2 = pd.read_excel('recipients_and_institutions/sed17-sr-tab005.xlsx', skiprows=3)
-    df3 = pd.read_excel('recipients_and_institutions/sed17-sr-tab003.xlsx', skiprows=3)
+    df2 = pd.read_excel('sed17-sr-tab005.xlsx', skiprows=3)
+    df3 = pd.read_excel('sed17-sr-tab003.xlsx', skiprows=3)
     
     # data preprocessing
     df2 = df2.iloc[:-2,:]
@@ -174,7 +174,7 @@ elif session == "Institutions Info - Disciplinary":
     st.header("Doctorates awarded, by state or location, broad field of study, and sex of doctorate recipients: 2017")
     
     # data pre-processing
-    df4 = pd.read_excel("recipients_and_institutions/sed17-sr-tab006.xlsx", skiprows=3).loc[1:,].reset_index(drop=True)
+    df4 = pd.read_excel("sed17-sr-tab006.xlsx", skiprows=3).loc[1:,].reset_index(drop=True)
 
     def helper(i, x):
         tmp = df4.iloc[:, [0, 2*i+1, 2*i+2]]
