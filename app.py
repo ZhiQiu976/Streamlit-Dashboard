@@ -9,16 +9,11 @@ import streamlit as st
 
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 
 from plotly import tools
-import plotly.offline as py
-import plotly.express as px
-from plotly.subplots import make_subplots
-import plotly.graph_objects as go
 
 import altair as alt
-from vega_datasets import data
+
 
 session = st.sidebar.selectbox("Category", ["Recipients Info", "Institutions Info - Ranking", "Institutions Info - Disciplinary"])
 st.title("**Doctorate Data Visualization**")
