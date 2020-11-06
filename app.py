@@ -10,8 +10,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-from plotly import tools
-
 import altair as alt
 
 
