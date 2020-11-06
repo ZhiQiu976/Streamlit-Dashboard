@@ -22,9 +22,7 @@ st.write("This dashboard uses data from *Doctorate Recipients from U.S. Universi
 if session == "Recipients Info": 
     st.header('Doctorate recipients from U.S. colleges and universities: 1958–2017')
     
-    df = pd.read_excel('sed17-sr-tab001.xlsx', skiprows=3)
-    # some data pre-processing
-    df.iloc[18,2] = 0
+    df = pd.read_excel('df.xlsx', index_col=0)
     
     mode = st.selectbox("Variable", ['Number of Doctorate Recipents', 'Percentage Change from Previous Year'])
     
@@ -144,11 +142,8 @@ if session == "Recipients Info":
 if session == "Institutions Info - Ranking": 
     st.header('State/University, ranked by number of doctorate recipients: 2017')
     
-    df2 = pd.read_excel('sed17-sr-tab005.xlsx', skiprows=3)
-    df3 = pd.read_excel('sed17-sr-tab003.xlsx', skiprows=3)
-    
-    # data preprocessing
-    df2 = df2.iloc[:-2,:]
+    df2 = pd.read_excel('df2.xlsx')
+    df3 = pd.read_excel('df3.xlsx')
     
     mode = st.selectbox("Rankings", ['State', 'University'])
     
@@ -173,18 +168,7 @@ elif session == "Institutions Info - Disciplinary":
     
     st.header("Doctorates awarded, by state or location, broad field of study, and sex of doctorate recipients: 2017")
     
-    # data pre-processing
-    df4 = pd.read_excel("sed17-sr-tab006.xlsx", skiprows=3).loc[1:,].reset_index(drop=True)
-
-    def helper(i, x):
-        tmp = df4.iloc[:, [0, 2*i+1, 2*i+2]]
-        tmp.columns = ['State or location', 'Male', 'Female']
-        tmp = tmp.melt(id_vars = 'State or location', var_name = 'sex')
-        tmp["field"] = x
-        return tmp
-
-    df4_new = pd.concat([helper(i, x) for i, x in enumerate(df4.columns[1::2])]).reset_index(drop=True)
-    df4_new = df4_new.loc[np.logical_and(df4_new["value"] != 0, df4_new["value"] != 'D'),].reset_index(drop=True)
+    df4_new = pd.read_excel('df4_new.xlsx', index_col=0)
     
     field = st.selectbox("Choose a field/discipline", list(np.unique(df4_new['field'])))
     tmp = df4_new.loc[df4_new['field']==field,]
